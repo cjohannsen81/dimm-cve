@@ -3,7 +3,7 @@ import credentials
 import csv
 
 
-header = ["model","serial","dn","location"]
+header = ["model","serial","dn","location","registered_device"]
 data = []
 
 top = 1000
@@ -14,11 +14,14 @@ def get_dimm_modules(apiClient,count):
     summary = api_instance.get_memory_unit_list(top=top,skip=count)
     #print(dir(summary))
     for i in summary.results:
+        mydict = i.to_dict()
+        #print(mydict.keys())
         if i['model']:
-            data.append(i['model'])
-            data.append(i['serial'])
-            data.append(i['dn'])
-            data.append(i['location'])
+            data.append(mydict.get('model'))
+            data.append(mydict.get('serial'))
+            data.append(mydict.get('dn'))
+            data.append(mydict.get('serial'))
+            data.append(mydict.get('registered_device'))
             #writes the data array into the csv file
             with open('dimm_modules.csv', 'a', encoding='utf-8') as f:
                 writer = csv.writer(f)
