@@ -20,7 +20,7 @@ def get_dimm_modules(apiClient,count):
             data.append(mydict.get('model'))
             data.append(mydict.get('serial'))
             data.append(mydict.get('dn'))
-            data.append(mydict.get('serial'))
+            data.append(mydict.get('location'))
             data.append(mydict.get('registered_device'))
             #writes the data array into the csv file
             with open('dimm_modules.csv', 'a', encoding='utf-8') as f:
